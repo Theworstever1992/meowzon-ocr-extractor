@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+temp_ai_image.jpg
+meowzon_enhanced_images/
+screenshots/
+*.csv
