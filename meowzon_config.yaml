@@ -1,0 +1,81 @@
+# Meowzon OCR Extractor Configuration
+# Save as: meowzon_config.yaml
+
+# ==================== INPUT/OUTPUT ====================
+input_folder: "./screenshots"
+output_csv: "meowzon_orders.csv"
+output_format: "csv"  # Options: csv, excel, json, html, all
+
+# ==================== PROCESSING ====================
+aggressive_mode: true  # Enable smart cropping and enhanced image saving
+parallel_processing: false  # Process files in parallel
+max_workers: 4  # Number of parallel workers (if parallel_processing is true)
+batch_size: 10  # Number of files to process in each batch
+
+# ==================== AI CONFIGURATION ====================
+ai_mode: "hybrid"  # Options: never, hybrid (fallback on low confidence), always
+ai_provider: "ollama"  # Options: ollama, openai, claude, gemini
+
+# AI Model Selection
+ollama_model: "qwen2-vl:7b"  # Recommended: qwen2-vl:7b, llava:13b
+openai_model: "gpt-4o-mini"  # Options: gpt-4o, gpt-4o-mini
+claude_model: "claude-3-5-sonnet-20241022"
+gemini_model: "gemini-1.5-flash"
+
+# AI Behavior
+ai_max_retries: 3  # Number of retry attempts on API failure
+ai_timeout: 30  # Timeout in seconds for AI API calls
+
+# ==================== OCR CONFIGURATION ====================
+tesseract_confidence_threshold: 70.0  # Confidence below this triggers AI (in hybrid mode)
+tesseract_config: "--psm 6 --oem 3"  # Tesseract configuration string
+upscale_factor: 2.0  # Image upscaling factor for better OCR
+
+# ==================== IMAGE PROCESSING ====================
+max_image_size_mb: 50  # Maximum image file size to process
+save_enhanced_images: true  # Save cropped and processed images for debugging
+enhanced_images_folder: "meowzon_enhanced_images"
+
+# Cropping Strategies (try different crops to find best OCR result)
+crop_strategies:
+  - name: "No Bottom 20%"
+    top: 0.0
+    bottom: 0.2
+    left: 0.0
+    right: 0.0
+  - name: "No Top 20%"
+    top: 0.2
+    bottom: 0.0
+    left: 0.0
+    right: 0.0
+  - name: "No Top 15%"
+    top: 0.15
+    bottom: 0.0
+    left: 0.0
+    right: 0.0
+  - name: "Center 80%"
+    top: 0.1
+    bottom: 0.1
+    left: 0.1
+    right: 0.1
+  - name: "Tight Center"
+    top: 0.1
+    bottom: 0.1
+    left: 0.05
+    right: 0.05
+
+# ==================== LOGGING ====================
+enable_logging: true
+log_file: "meowzon.log"
+log_level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+# ==================== FEATURES ====================
+enable_analytics: true  # Generate summary statistics
+enable_duplicate_detection: true  # Detect duplicate orders
+enable_validation: true  # Validate extracted data
+enable_interactive_review: false  # Enable manual review of low-confidence results
+generate_plots: true  # Generate analytics visualizations
+
+# ==================== OUTPUT FIELDS ====================
+include_raw_text: true  # Include raw OCR text in output
+include_debug_info: true  # Include debug information (crop used, etc.)

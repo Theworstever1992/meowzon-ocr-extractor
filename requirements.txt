@@ -1,0 +1,25 @@
+# Core dependencies
+opencv-python>=4.8.0
+numpy>=1.24.0
+pytesseract>=0.3.10
+pandas>=2.0.0
+tqdm>=4.65.0
+requests>=2.31.0
+
+# Configuration
+pyyaml>=6.0
+
+# AI providers (optional - install as needed)
+openai>=1.0.0
+anthropic>=0.18.0
+google-generativeai>=0.3.0
+
+# Analytics and visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Excel export
+openpyxl>=3.1.0
+
+# Image handling
+Pillow>=10.0.0
