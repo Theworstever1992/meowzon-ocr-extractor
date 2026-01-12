@@ -9,6 +9,13 @@ import sys
 import argparse
 from pathlib import Path
 
+# Initialize colorama for Windows color support
+try:
+    import colorama
+    colorama.just_fix_windows_console()
+except ImportError:
+    pass  # colorama not installed, colors will be disabled
+
 from meowzon.config import ExtractorConfig, create_default_config
 from meowzon.extractor import MeowzonExtractor
 from meowzon.logging_utils import setup_logging
